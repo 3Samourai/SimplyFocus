@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  "name": "SimplyFocus",
+  "version": "1.0",
+  "description": "Block distracting sites to maintain focus",
+  "permissions": [
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon.png",
+      "96": "icon.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "icons": {
+    "48": "icon.png",
+    "96": "icon.png"
+  }
+}

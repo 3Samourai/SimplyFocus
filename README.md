@@ -11,6 +11,8 @@ SimplyFocus is a browser extension designed to help you stay focused by blocking
 
 ## Installation
 
+[![Firefox Link](https://raw.githubusercontent.com/3Samourai/SimplyTranslator/refs/heads/master/firefox.png)](https://addons.mozilla.org/en-US/firefox/addon/simplyfocus/)
+
 ### Manual
 1. Clone this repository or download the source code.
 2. Open your browser's extension management page:

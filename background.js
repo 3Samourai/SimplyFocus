@@ -1,10 +1,12 @@
 let isBlocking = false;
 let sitesToBlock = [];
+let redirectUrl = '';
 
 // Load initial state
-browser.storage.local.get(['isBlocking', 'sites'], function(result) {
+browser.storage.local.get(['isBlocking', 'sites', 'redirectUrl'], function(result) {
   isBlocking = result.isBlocking || false;
   sitesToBlock = result.sites || [];
+  redirectUrl = result.redirectUrl || '';
   updateIcon(isBlocking);
 });
 
@@ -17,6 +19,9 @@ browser.storage.onChanged.addListener(function(changes, areaName) {
     }
     if (changes.sites) {
       sitesToBlock = changes.sites.newValue;
+    }
+    if (changes.redirectUrl) {
+      redirectUrl = changes.redirectUrl.newValue;
     }
   }
 });
@@ -35,10 +40,13 @@ browser.webRequest.onBeforeRequest.addListener(
     if (isBlocking) {
       const url = new URL(details.url);
       if (sitesToBlock.some(site => url.hostname.includes(site))) {
-        return {cancel: true};
+        if (redirectUrl) {
+          return { redirectUrl: redirectUrl };
+        }
+        return { cancel: true };
       }
     }
-    return {cancel: false};
+    return { cancel: false };
   },
   {urls: ["<all_urls>"]},
   ["blocking"]

@@ -8,6 +8,7 @@ SimplyFocus is a browser extension designed to help you stay focused by blocking
 - Enable/disable blocking with a single click
 - Visual indicator (icon) to show when blocking is active
 - Simple and intuitive user interface
+- Redirect to a custom URL when blocked
 
 ## Installation
 

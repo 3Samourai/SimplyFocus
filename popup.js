@@ -1,26 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
   const siteList = document.getElementById('siteList');
+  const redirectUrl = document.getElementById('redirectUrl');
   const addSiteButton = document.getElementById('addSite');
   const toggleBlockingButton = document.getElementById('toggleBlocking');
   const statusDiv = document.getElementById('status');
 
   // Load saved sites and blocking state
-  browser.storage.local.get(['sites', 'isBlocking'], function(result) {
+  browser.storage.local.get(['sites', 'isBlocking', 'redirectUrl'], function(result) {
     if (result.sites) {
       siteList.value = result.sites.join('\n');
+    }
+    if (result.redirectUrl) {
+      redirectUrl.value = result.redirectUrl;
     }
     updateToggleButton(result.isBlocking);
   });
 
-  // Update site list
+  // Update site list and redirect URL
   addSiteButton.addEventListener('click', function() {
     const sites = siteList.value.split('\n')
       .map(site => site.trim().toLowerCase())
       .filter(site => site !== '')
       .map(site => site.replace(/^www\./, '')); // Remove 'www.' if present
     
-    browser.storage.local.set({sites: sites}, function() {
-      showStatus('Site list updated');
+    const redirectUrlValue = redirectUrl.value.trim();
+    
+    browser.storage.local.set({
+      sites: sites,
+      redirectUrl: redirectUrlValue
+    }, function() {
+      showStatus('Settings updated');
     });
   });
 

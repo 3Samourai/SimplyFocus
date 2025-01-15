@@ -74,6 +74,14 @@
       font-size: 14px;
       height: 20px;
     }
+    #redirectUrl {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
   </style>
 </head>
 <body>
@@ -82,6 +90,11 @@
     <label for="siteList">Sites to Block:</label>
     <textarea id="siteList" placeholder="e.g. facebook.com&#10;twitter.com&#10;instagram.com"></textarea>
     <p class="help-text">Enter one site per line</p>
+  </div>
+  <div class="input-group">
+    <label for="redirectUrl">Redirect to (optional):</label>
+    <input type="url" id="redirectUrl" placeholder="https://example.com" />
+    <p class="help-text">Leave empty to show blocking page</p>
   </div>
   <button id="addSite">Update Site List</button>
   <button id="toggleBlocking">Enable Blocking</button>
